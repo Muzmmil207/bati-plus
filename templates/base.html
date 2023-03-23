@@ -1,3 +1,4 @@
+<!-- {% load static %} -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,48 +14,84 @@
         integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
         integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-
     <link rel="stylesheet" href="/static/css/style.css">
+
+    <!-- <link rel="stylesheet" href="{% static 'css/style.css' %}"> -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 
     <title>{% block title %}BATI PULS{% endblock %}</title>
+
+    <script type="text/javascript">
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        const csrftoken = getCookie('csrftoken');
+    </script>
+
 </head>
 
 <body>
+    <nav>
+        <div class="image">
+            <img src="/static/imgs/logo.jpg" alt="">
+        </div>
+        <div class="name">
+            <h1>bati plus travaux</h1>
+        </div>
+    </nav>
+    <div class="load hidden" style="">
+        <div class="load-content">
+            <div class="spinner-border text-primary" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+            <h6>الرجاء الانتظار</h6>
+        </div>
+    </div>
     <div class="containe">
         <div class="form-wrapper">
-            <div class="form-image">
-                <img src="/static/imgs/umit-yildirim-9OB46apMbC4-unsplash.jpg" alt="">
-            </div>
             <div class="form-header">
                 <h1>حساب الطوب للجدران</h1>
             </div>
             <form class="counter">
+                <div id="utr" style="display: none;"></div>
                 <div class="form-component">
                     <h1>مقاسات الطوب</h1>
-                    <img src="/static/imgs/20230322_214212.jpg" alt="">
+                    <!-- <img src="/static/imgs/20230322_214212.jpg" alt=""> -->
                     <div class="form-elements">
                         <div class="form-element">
-                            <input type="text">
-                            <label for="">:الارتفاع</label>
+                            <input required id="brick-height" type="number">
+                            <label for="brick-height">:الارتفاع</label>
                         </div>
                         <div class="form-element">
-                            <input type="text">
-                            <label for="">:الطول</label>
+                            <input required id="brick-length" type="number">
+                            <label for="brick-length">:الطول</label>
                         </div>
+                        <p>سعر الطوبة الواحدة $4</p>
                     </div>
                 </div>
                 <div class="form-component">
                     <h1>مقاسات الجدار</h1>
-                    <img src="/static/imgs/20230322_214212.jpg" alt="">
+                    <!-- <img src="/static/imgs/20230322_214212.jpg" alt=""> -->
                     <div class="form-elements">
                         <div class="form-element">
-                            <input type="text">
-                            <label for="">:الارتفاع</label>
+                            <input required id="wall-height" type="number">
+                            <label for="wall-height">:الارتفاع</label>
                         </div>
                         <div class="form-element">
-                            <input type="text">
-                            <label for="">:الطول</label>
+                            <input required id="wall-length" type="number">
+                            <label for="wall-length">:الطول</label>
                         </div>
                     </div>
                 </div>
@@ -62,64 +99,58 @@
                     <h1>ما ستحتاجه لبناء الجدار</h1>
                     <div class="form-element special-form-element">
                         <img src="/static/imgs/20230322_214150.jpg" alt="">
-                        <input type="text">
-                        <label for="">:كمية الرمل</label>
+                        <input required id="amount-of-sand" type="number">
+                        <label for="amount-of-sand">:كمية الرمل</label>
                     </div>
                     <div class="form-element special-form-element">
                         <img src="/static/imgs/20230322_214150.jpg" alt="">
-                        <input type="text">
-                        <label for="">:كمية الاسمنت</label>
+                        <input required id="amount-of-cement" type="number">
+                        <label for="amount-of-cement">:كمية الاسمنت</label>
                     </div>
                     <div class="form-element special-form-element">
                         <img src="/static/imgs/20230322_214150.jpg" alt="">
-                        <input type="text">
-                        <label for="">:كمية الطوب</label>
+                        <input required id="amount-of-brick" type="number">
+                        <label for="amount-of-brick">:كمية الطوب</label>
                     </div>
                     <div class="form-element special-form-element">
                         <img src="/static/imgs/20230322_214150.jpg" alt="">
-                        <input type="text">
-                        <label for="">:كمية الماء</label>
+                        <input required id="amount-of-water" type="number">
+                        <label for="amount-of-water">:كمية الماء</label>
                     </div>
                 </div>
                 <div class="form-btns">
-                    <button id="delete" class="btn btn-danger btn-sm">حذف</button>
+                    <div id="delete" class="btn btn-danger btn-sm">حذف</div>
                     <button id="save" class="btn btn-primary btn-sm">حفظ</button>
                 </div>
             </form>
         </div>
-        <br><br>
-        <div class="card ">
-            <div class="card-body container" style="overflow-y: scroll;">
-                <!-- Bordered Table -->
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th scope="col">المعرف</th>
-                            <th scope="col">كمية الرمل</th>
-                            <th scope="col">كمية الاسمنت</th>
-                            <th scope="col">كمية الطوب</th>
-                            <th scope="col">كمية الماء</th>
-                            <th scope="col">مقاسات الجدار</th>
-                            <th scope="col">مقاسات الطوب</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Brandon Jacob</td>
-                            <td>Designer</td>
-                            <td>28</td>
-                            <td>28</td>
-                            <td>28</td>
-                            <td>2016-05-25</td>
-                        </tr>
-
-                    </tbody>
-                </table>
-                <!-- End Bordered Table -->
-            </div>
+        <br>
+        <div class="card-body container">
+            <!-- Bordered Table -->
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">مقاسات الطوب (الارتفاع)</th>
+                        <th scope="col">مقاسات الطوب (الطول)</th>
+                        <th scope="col">مقاسات الجدار (الارتفاع)</th>
+                        <th scope="col">مقاسات الجدار(الطول)</th>
+                        <th scope="col">كمية الرمل</th>
+                        <th scope="col">كمية الاسمنت</th>
+                        <th scope="col">كمية الطوب</th>
+                        <th scope="col">كمية الماء</th>
+                        <th scope="col">المجموع</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody">
+                </tbody>
+                <tfoot>
+                    <th>المجموع الكلي</th>
+                    <th colspan="8" id="total">0</th>
+                </tfoot>
+            </table>
+            <!-- End Bordered Table -->
+            <br><br>
         </div>
-
     </div>
 
     <script src="/static/js/main.js"></script>
