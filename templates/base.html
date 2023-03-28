@@ -44,11 +44,61 @@
 
 <body>
     <nav>
-        <div class="image">
-            <img src="/static/imgs/logo.jpg" alt="">
+        <div class="menu-icon">
+            <i id="menu-btn" class="bi bi-list-task"></i>
+            <a href="" class="">
+                البناء والتعمير
+            </a>
         </div>
-        <div class="name">
-            <h1>bati plus travaux</h1>
+        <div id="nav-item" class="top-nav">
+            <a href="" class="nav-title">
+                البناء والتعمير
+            </a>
+            <div class="nav-contacts">
+                <div class="contact">
+                    <div class="icon">
+                        <i class="bi bi-clock"></i>
+                    </div>
+                    <div class="contact-info">
+                        <h1>ساعات العمل</h1>
+                        <p>
+                            الأحد - السبت, 08:00 - 18:00
+                        </p>
+                    </div>
+                </div>
+                <div class="contact">
+                    <div class="icon">
+                        <i class="bi bi-phone"></i>
+                    </div>
+                    <div class="contact-info">
+                        <h1>إتصل بنا</h1>
+                        <p>
+                            +212669015920
+                        </p>
+                    </div>
+                </div>
+                <div class="contact">
+                    <div class="icon">
+                        <i class="bi bi-envelope"></i>
+                    </div>
+                    <div class="contact-info">
+                        <h1>بريدنا الإلكتروني</h1>
+                        <p>
+                            construction@btpma.com
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="nav-item" class="bottom-nav">
+            <div class="nav-links">
+                <a href="/">home</a>
+            </div>
+            <div class="whatsapp">
+                <span>
+                    واتساب
+                </span>
+            </div>
         </div>
     </nav>
     <div class="load hidden" style="">
@@ -62,35 +112,99 @@
     <div class="containe">
         <div class="form-wrapper">
             <div class="form-header">
-                <h1>حساب الطوب للجدران</h1>
+                <h1 class="center-text">حساب الطوب للجدران</h1>
             </div>
             <form class="counter">
                 <div id="utr" style="display: none;"></div>
                 <div class="form-component">
-                    <h1>مقاسات الطوب</h1>
-                    <!-- <img src="/static/imgs/20230322_214212.jpg" alt=""> -->
+                    <img src="/static/imgs/brique 356.png" alt="image">
+                    <h1 class="center-text">مقاسات الطوب</h1>
+                    <div class="form-elements">
+                        <span>الطول*الارتفاع*العرض</span>
+                        <div class="form-element">
+                            <select class="form-control">
+                                <option value="0">
+                                    BRIQUE-50*20*20
+                                </option>
+                                <option value="1">
+                                    BRIQUE-50*20*15
+                                </option>
+                                <option value="2">
+                                    BRIQUE-50*20*10
+                                </option>
+                                <option value="3">
+                                    BRIQUE-40*20*20
+                                </option>
+                                <option value="4">
+                                    BRIQUE-40*20*15
+                                </option>
+                                <option value="5">
+                                    BRIQUE-40*20*10
+                                </option>
+                                <option value="6">
+                                    BRIQUE-25*13*07
+                                </option>
+                                <option value="7">
+                                    BRIQUE-25*13*05
+                                </option>
+                                <option value="8">
+                                    BRIQUE-25*13*18
+                                </option>
+                                <option value="9">
+                                    BRIQUE-25*07*13
+                                </option>
+                                <option value="10">
+                                    BRIQUE-25*18*07
+                                </option>
+                                <option value="11">
+                                    BRIQUE-25*05*13
+                                </option>
+                                <option value="12">
+                                    BRIQUE-25*18*13
+                                </option>
+                                <option value="13">
+                                    BRIQUE-20*05*10
+                                </option>
+                                <option value="14">
+                                    BRIQUE-20*02*10
+                                </option>
+                                <option value="15">
+                                    BRIQUE-10*05*10
+                                </option>
+                                <option value="16">
+                                    BRIQUE-10*02*10
+                                </option>
+                                <option value="17">
+                                    BRIQUE-60*20*20
+                                </option>
+                                <option value="18">
+                                    BRIQUE-60*20*15
+                                </option>
+                                <option value="19">
+                                    BRIQUE-60*20*10
+                                </option>
+                            </select>
+                        </div>
+                    </div><br>
+                    <h1 class="center-text">سعر الطوب</h1>
                     <div class="form-elements">
                         <div class="form-element">
-                            <input required id="brick-height" type="number">
-                            <label for="brick-height">:الارتفاع</label>
+                            <input class="form-control" required id="brick-length" type="number">
+                            <label for="brick-length">:HD</label>
                         </div>
-                        <div class="form-element">
-                            <input required id="brick-length" type="number">
-                            <label for="brick-length">:الطول</label>
-                        </div>
-                        <p>سعر الطوبة الواحدة $4</p>
                     </div>
+                    <br>
                 </div>
                 <div class="form-component">
-                    <h1>مقاسات الجدار</h1>
-                    <!-- <img src="/static/imgs/20230322_214212.jpg" alt=""> -->
+                    <img src="/static/imgs/n-brique.png" alt="image">
+                    <h1 class="center-text">مقاسات الجدار</h1>
                     <div class="form-elements">
                         <div class="form-element">
-                            <input required id="wall-height" type="number">
+                            <input class="form-control" required id="wall-height" type="number">
                             <label for="wall-height">:الارتفاع</label>
                         </div>
                         <div class="form-element">
-                            <input required id="wall-length" type="number">
+                            <input class="form-control" required id="wall-length" type="number">
                             <label for="wall-length">:الطول</label>
                         </div>
                     </div>
@@ -98,24 +212,24 @@
                 <div class="form-component special-component ">
                     <h1>ما ستحتاجه لبناء الجدار</h1>
                     <div class="form-element special-form-element">
-                        <img src="/static/imgs/20230322_214150.jpg" alt="">
-                        <input required id="amount-of-sand" type="number">
-                        <label for="amount-of-sand">:كمية الرمل</label>
+                        <img src="/static/imgs/sand.png" alt="image">
+                        <input disabled class="form-control" required id="sand-amount" type="number">
+                        <label for="sand-amount">:كمية الرمل</label>
                     </div>
                     <div class="form-element special-form-element">
-                        <img src="/static/imgs/20230322_214150.jpg" alt="">
-                        <input required id="amount-of-cement" type="number">
-                        <label for="amount-of-cement">:كمية الاسمنت</label>
+                        <img src="/static/imgs/cimont lafarg.png" alt="image">
+                        <input disabled class="form-control" required id="cement-amount" type="number">
+                        <label for="cement-amount">:كمية الاسمنت</label>
                     </div>
                     <div class="form-element special-form-element">
-                        <img src="/static/imgs/20230322_214150.jpg" alt="">
-                        <input required id="amount-of-brick" type="number">
-                        <label for="amount-of-brick">:كمية الطوب</label>
+                        <img src="/static/imgs/brique 356.png" alt="image">
+                        <input disabled class="form-control" required id="brick-amount" type="number">
+                        <label for="brick-amount">:كمية الطوب</label>
                     </div>
                     <div class="form-element special-form-element">
-                        <img src="/static/imgs/20230322_214150.jpg" alt="">
-                        <input required id="amount-of-water" type="number">
-                        <label for="amount-of-water">:كمية الماء</label>
+                        <img src="/static/imgs/Blue_Drop_Transparent_PNG_Clipart.png" alt="image">
+                        <input disabled class="form-control" required id="water-amount" type="number">
+                        <label for="water-amount">:كمية الماء</label>
                     </div>
                 </div>
                 <div class="form-btns">
@@ -125,15 +239,23 @@
             </form>
         </div>
         <br>
-        <div class="card-body container">
+        <div class="card-body table-container">
             <!-- Bordered Table -->
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th scope="col">مقاسات الطوب (الارتفاع)</th>
-                        <th scope="col">مقاسات الطوب (الطول)</th>
-                        <th scope="col">مقاسات الجدار (الارتفاع)</th>
-                        <th scope="col">مقاسات الجدار(الطول)</th>
+                        <th></th>
+                        <th colspan="2" scope="col">الطوب</th>
+                        <th colspan="2" scope="col">الجدار</th>
+                        <th colspan="4" scope="col">ما ستحتاجه لبناء الجدار</th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <th scope="col">المعرّف</th>
+                        <th scope="col">الارتفاع</th>
+                        <th scope="col">الطول</th>
+                        <th scope="col">الارتفاع</th>
+                        <th scope="col">الطول</th>
                         <th scope="col">كمية الرمل</th>
                         <th scope="col">كمية الاسمنت</th>
                         <th scope="col">كمية الطوب</th>
@@ -142,17 +264,30 @@
                     </tr>
                 </thead>
                 <tbody id="tbody">
+
                 </tbody>
                 <tfoot>
-                    <th>المجموع الكلي</th>
-                    <th colspan="8" id="total">0</th>
+                    <td>المجموع</td>
+                    <td colspan="8"></td>
+                    <td id="total">0</td>
                 </tfoot>
             </table>
             <!-- End Bordered Table -->
-            <br><br>
+
         </div>
     </div>
-
+    <br>
+    <br><br>
+    <br><br>
+    <script>
+        const navItems = document.querySelectorAll('#nav-item');
+        const menuBtn = document.getElementById('menu-btn');
+        menuBtn.onclick = () => {
+            navItems.forEach((e) => {
+                e.classList.toggle('active');
+            })
+        }
+    </script>
     <script src="/static/js/main.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
