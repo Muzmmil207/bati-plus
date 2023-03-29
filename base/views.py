@@ -1,5 +1,6 @@
 import csv
 import json
+import time
 
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
@@ -42,6 +43,7 @@ def commodity(request):
         )
         response["total"] = float("{:.2f}".format(total))
         response["id"] = data.get("id")
+        time.sleep(0.5)
         return JsonResponse(response, safe=False)
     return JsonResponse({}, safe=False)
 

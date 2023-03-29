@@ -145,3 +145,25 @@ async function sendData(data) {
 }
 
 
+document.onload = uploadTableData()
+function uploadTableData() {
+    let total = document.getElementById('total')
+    total.innerHTML = `<span>${processData[0]['total'].toFixed(2)}</span>`
+    processData = processData.slice(1)
+
+    processData.forEach(function (value, index) {
+        tbody.innerHTML += `
+        <tr id="row-${value['id']}" onclick="tableRowEvent(this)">
+            <td>${value['id']}</td>
+            <td>${value['sand-price']}</td>
+            <td>${value['sand-amount']}</td>
+            <td>${value['cement-price']}</td>
+            <td>${value['cement-amount']}</td>
+            <td>${value['brick-price']}</td>
+            <td>${value['brick-amount']}</td>
+            <td>${value['water-price']}</td>
+            <td>${value['water-amount']}</td>
+            <td class="sub-total">${value['total']}</td>
+        </tr>`
+    })
+}
