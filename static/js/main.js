@@ -51,8 +51,8 @@ function tableRowEvent(ele) {
 
     let wallHeight = document.getElementById('wall-height')
     let wallLength = document.getElementById('wall-length')
-    wallHeight.value = null
-    wallLength.value = null
+    wallHeight.value = 0
+    wallLength.value = 0
 }
 
 
