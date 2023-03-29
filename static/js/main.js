@@ -5,8 +5,6 @@ let tbody = document.getElementById('tbody')
 
 let bricksData = document.querySelector('select')
 
-
-let processData = localStorage.getItem('process-data') ? JSON.parse(localStorage.getItem('process-data')) : [{ 'total': 0 }]
 let commodityData = {}
 
 const brickTypes = [
@@ -39,7 +37,6 @@ function handelBricksData() {
     commodityData['brick-height'] = brickDataValue[1]
     commodityData['brick-width'] = brickDataValue[2]
 }
-handelBricksData()
 
 // Table Row Events
 function tableRowEvent(ele) {
@@ -54,8 +51,8 @@ function tableRowEvent(ele) {
 
     let wallHeight = document.getElementById('wall-height')
     let wallLength = document.getElementById('wall-length')
-    wallHeight.value = 0
-    wallLength.value = 0
+    wallHeight.value = null
+    wallLength.value = null
 }
 
 
@@ -101,6 +98,7 @@ async function sendData(data) {
         body: JSON.stringify(data)
     });
     const response = await request.json()
+    let processData = JSON.parse(localStorage.getItem('process-data'))
 
     //////
     if (response['id']) {
@@ -115,10 +113,15 @@ async function sendData(data) {
             <td>${response['brick-amount']}</td>
             <td>${response['water-price']}</td>
             <td>${response['water-amount']}</td>
-            <td class="sub-total">${count}</td>`
+            <td class="sub-total">${response['total']}</td>`
         tableRow.classList = ''
-        processData[response['id']] = response
+        processData[parseInt(response['id'])] = response
+
     } else {
+        if (processData == null) {
+            localStorage.setItem('process-data', JSON.stringify([{ 'total': 0 }]))
+            processData = JSON.parse(localStorage.getItem('process-data'))
+        }
         response['id'] = processData.length
 
         tbody.innerHTML += `
@@ -137,7 +140,10 @@ async function sendData(data) {
         processData.push(response)
     }
     /////
-    processData[0]['total'] += response['total']
+    processData[0]['total'] = 0
+    processData.slice(1).forEach((record) => {
+        processData[0]['total'] += record['total']
+    })
     localStorage.setItem('process-data', JSON.stringify(processData))
     let total = document.getElementById('total')
     total.innerHTML = `<span>${processData[0]['total'].toFixed(2)}</span>`
@@ -147,7 +153,9 @@ async function sendData(data) {
 
 document.onload = uploadTableData()
 function uploadTableData() {
+    let processData = JSON.parse(localStorage.getItem('process-data'))
     let total = document.getElementById('total')
+
     total.innerHTML = `<span>${processData[0]['total'].toFixed(2)}</span>`
     processData = processData.slice(1)
 

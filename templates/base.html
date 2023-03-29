@@ -155,11 +155,11 @@
                     <h1 class="center-text">مقاسات الجدار</h1>
                     <div class="form-elements">
                         <div class="form-element">
-                            <input class="form-control" required id="wall-height" type="number">
+                            <input class="form-control" required id="wall-height" type="number" step="0.01">
                             <label for="wall-height">:الارتفاع</label>
                         </div>
                         <div class="form-element">
-                            <input class="form-control" required id="wall-length" type="number">
+                            <input class="form-control" required id="wall-length" type="number" step="0.01">
                             <label for="wall-length">:الطول</label>
                         </div>
                     </div>
@@ -168,22 +168,26 @@
                     <h1>ما ستحتاجه لبناء الجدار</h1>
                     <div class="form-element special-form-element">
                         <img src="/static/imgs/sand.png" alt="image">
-                        <input disabled class="form-control" value="150DH" id="sand-price" type="text">
+                        <input disabled class="form-control" value="{{sand.commodity_price}}DH" id="sand-price"
+                            type="text">
                         <label for="sand-price">:سعر الرمل</label>
                     </div>
                     <div class="form-element special-form-element">
                         <img src="/static/imgs/cimont lafarg.png" alt="image">
-                        <input disabled class="form-control" value="80HD" id="cement-price" type="text">
+                        <input disabled class="form-control" value="{{cement.commodity_price}}HD" id="cement-price"
+                            type="text">
                         <label for="cement-price">:سعر الاسمنت</label>
                     </div>
                     <div class="form-element special-form-element">
                         <img src="/static/imgs/brique 356.png" alt="image">
-                        <input disabled class="form-control" value="0.9HD" id="brick-price" type="text">
+                        <input disabled class="form-control" value="{{brick.commodity_price}}HD" id="brick-price"
+                            type="text">
                         <label for="brick-price">:سعر الطوب</label>
                     </div>
                     <div class="form-element special-form-element">
                         <img style="width: 25px;" src="/static/imgs/Blue_Drop_Transparent_PNG_Clipart.png" alt="image">
-                        <input disabled class="form-control" value="0.02HD" id="water-price" type="text">
+                        <input disabled class="form-control" value="{{water.commodity_price}}HD" id="water-price"
+                            type="text">
                         <label for="water-price">:سعر الماء</label>
                     </div>
                 </div>

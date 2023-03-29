@@ -6,9 +6,31 @@ from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 from django.views.decorators.http import require_http_methods
 
+from .forms import DecimalForm
+from .models import Commodity
+
 
 def home(request):
-    return render(request, "base/home.html")
+    try:
+        sand, _= Commodity.objects.get_or_create(commodity_name='sand', commodity_price=150)
+    except:
+        sand = Commodity.objects.get(commodity_name='sand')
+    try:
+        brick, _= Commodity.objects.get_or_create(commodity_name='brick', commodity_price=0.9)
+    except:
+        brick = Commodity.objects.get(commodity_name='brick')
+    try:
+        cement, _= Commodity.objects.get_or_create(commodity_name='cement', commodity_price=80)
+    except:
+        cement = Commodity.objects.get(commodity_name='cement')
+    try:
+        water, _= Commodity.objects.get_or_create(commodity_name='water', commodity_price=0.02)
+    except:
+        water = Commodity.objects.get(commodity_name='water')
+
+    form = DecimalForm()
+    context = {'sand':sand,'brick':brick,'cement':cement, 'water':water,'form':form}
+    return render(request, "base/home.html", context)
 
 
 def commodity(request):
