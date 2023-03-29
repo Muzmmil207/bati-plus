@@ -1,87 +1,61 @@
 let deleteBtn = document.getElementById('delete')
-let saveBtn = document.getElementById('save')
 let form = document.querySelector('.counter')
 let formInputs = document.querySelectorAll('input')
 let tbody = document.getElementById('tbody')
-let bricksData = document.querySelector('select')
-let wallHeight = document.getElementById('wall-height')
-let wallLength = document.getElementById('wall-length')
-let sand = document.getElementById('sand-amount')
-let cement = document.getElementById('cement-amount')
-let brick = document.getElementById('brick-amount')
-let water = document.getElementById('water-amount')
 
-let processData = localStorage.getItem('process-data') ? JSON.parse(localStorage.getItem('process-data')) : []
+let bricksData = document.querySelector('select')
+
+
+let processData = localStorage.getItem('process-data') ? JSON.parse(localStorage.getItem('process-data')) : [{ 'total': 0 }]
 let commodityData = {}
-let id = 0
+
+const brickTypes = [
+    [0.50, 0.20, 0.20],
+    [0.50, 0.20, 0.15],
+    [0.50, 0.20, 0.10],
+    [0.40, 0.20, 0.20],
+    [0.40, 0.20, 0.15],
+    [0.40, 0.20, 0.10],
+    [0.25, 0.13, 0.07],
+    [0.25, 0.13, 0.05],
+    [0.25, 0.13, 0.18],
+    [0.25, 0.07, 0.13],
+    [0.25, 0.18, 0.07],
+    [0.25, 0.05, 0.13],
+    [0.25, 0.18, 0.13],
+    [0.20, 0.05, 0.10],
+    [0.20, 0.02, 0.10],
+    [0.10, 0.05, 0.10],
+    [0.10, 0.02, 0.10],
+    [0.60, 0.20, 0.20],
+    [0.60, 0.20, 0.15],
+    [0.60, 0.20, 0.10],
+]
 
 bricksData.onchange = handelBricksData
-wallHeight.onchange = dataHandler
-wallLength.onchange = dataHandler
 function handelBricksData() {
-    brickDataValue = bricksData.value.split('*').map(function (e) {
-        return parseFloat(e)
-    })
+    brickDataValue = brickTypes[bricksData.value]
     commodityData['brick-length'] = brickDataValue[0]
     commodityData['brick-height'] = brickDataValue[1]
     commodityData['brick-width'] = brickDataValue[2]
-    console.log(typeof commodityData['brick-length'])
 }
 handelBricksData()
-
-function dataHandler() {
-    commodityData[this.id] = parseFloat(this.value)
-    if (typeof commodityData['brick-length'] === "number") {
-        if (typeof commodityData['wall-height'] === "number" && typeof commodityData['wall-length'] === "number") {
-            commodityData['brick-amount']
-                = parseInt(
-                    (commodityData['wall-height'] * commodityData['wall-length']) /
-                    (commodityData['brick-length'] * commodityData['brick-height']))
-            console.log(commodityData['brick-amount'])
-        }
-        console.log('====================')
-        console.log(commodityData)
-        commodityData['bricks-amount']
-    }
-}
-
 
 // Table Row Events
 function tableRowEvent(ele) {
     let tableTr = document.querySelectorAll('tr')
-    console.log(ele.id)
     tableTr.forEach((e) => {
         e.classList = ''
     })
     ele.classList += 'bg-primary'
 
     form.reset()
-    for (var i = 0; i < 9; i++) {
-        formInputs.forEach((input) => {
-            try {
-                if (input.id === ele.children[i].classList.toString()) {
-                    input.value = parseFloat(ele.children[i].innerText)
-                };
-            } catch (error) { }
+    commodityData['id'] = ele.id.slice(4)
 
-        });
-    };
-    document.getElementById('utr').innerText = ele.id
-}
-
-function addTableRow(data) {
-    tbody.innerHTML += `
-        <tr id="${data['id']}" onclick="tableRowEvent(this)">
-            <td class="brick-height">${data['brick-height']}</td>
-            <td class="brick-length">${data['brick-length']}</td>
-            <td class="wall-height">${data['wall-height']}</td>
-            <td class="wall-length">${data['wall-length']}</td>
-            <td class="sand-amount">${data['sand-amount']}</td>
-            <td class="cement-amount">${data['cement-amount']}</td>
-            <td class="brick-amount">${data['brick-amount']}</td>
-            <td class="water-amount">${data['water-amount']}</td>
-            <td class="sub-total">${subTotal}</td>
-        </tr>`
+    let wallHeight = document.getElementById('wall-height')
+    let wallLength = document.getElementById('wall-length')
+    wallHeight.value = 0
+    wallLength.value = 0
 }
 
 
@@ -89,19 +63,26 @@ function addTableRow(data) {
 form.onsubmit = (e) => {
     document.querySelector('.load').classList.remove('hidden')
     e.preventDefault()
-    setTimeout(() => {
-        if (document.getElementById('utr').innerText != '') {
-            updateTableRow(document.getElementById('utr').innerText, commodityData)
-            console.log(document.getElementById('utr').innerText, commodityData)
-        } else {
-            commodityData['id'] = id
-            sendData(commodityData)
-        }
-        form.reset()
-        processData += commodityData
-        localStorage.setItem('process-data', JSON.stringify(processData))
-        commodityData = {}
-    }, 1000)
+
+    let wallHeight = document.getElementById('wall-height')
+    let wallLength = document.getElementById('wall-length')
+    let sand = document.getElementById('sand-price')
+    let cement = document.getElementById('cement-price')
+    let brick = document.getElementById('brick-price')
+    let water = document.getElementById('water-price')
+    handelBricksData()
+
+    commodityData['wall-height'] = parseFloat(wallHeight.value)
+    commodityData['wall-length'] = parseFloat(wallLength.value)
+    commodityData['sand-price'] = parseFloat(sand.value)
+    commodityData['cement-price'] = parseFloat(cement.value)
+    commodityData['brick-price'] = parseFloat(brick.value)
+    commodityData['water-price'] = parseFloat(water.value)
+    commodityData['batter-thickness'] = 0.015
+    sendData(commodityData)
+
+    form.reset()
+    commodityData = {}
 }
 
 deleteBtn.onclick = () => {
@@ -120,57 +101,47 @@ async function sendData(data) {
         body: JSON.stringify(data)
     });
     const response = await request.json()
-    let subTotal = countTotal(response)
 
-    addTableRow(data)
-    id += 1
+    //////
+    if (response['id']) {
+        let tableRow = document.getElementById(`row-${response['id']}`)
+        tableRow.innerHTML = `
+            <td>${response['id']}</td>
+            <td>${response['sand-price']}</td>
+            <td>${response['sand-amount']}</td>
+            <td>${response['cement-price']}</td>
+            <td>${response['cement-amount']}</td>
+            <td>${response['brick-price']}</td>
+            <td>${response['brick-amount']}</td>
+            <td>${response['water-price']}</td>
+            <td>${response['water-amount']}</td>
+            <td class="sub-total">${count}</td>`
+        tableRow.classList = ''
+        processData[response['id']] = response
+    } else {
+        response['id'] = processData.length
 
+        tbody.innerHTML += `
+        <tr id="row-${response['id']}" onclick="tableRowEvent(this)">
+            <td>${response['id']}</td>
+            <td>${response['sand-price']}</td>
+            <td>${response['sand-amount']}</td>
+            <td>${response['cement-price']}</td>
+            <td>${response['cement-amount']}</td>
+            <td>${response['brick-price']}</td>
+            <td>${response['brick-amount']}</td>
+            <td>${response['water-price']}</td>
+            <td>${response['water-amount']}</td>
+            <td class="sub-total">${response['total']}</td>
+        </tr>`
+        processData.push(response)
+    }
+    /////
+    processData[0]['total'] += response['total']
+    localStorage.setItem('process-data', JSON.stringify(processData))
     let total = document.getElementById('total')
-    total.innerHTML = `<span>${parseFloat(total.innerText) + response['total']}</span>`
+    total.innerHTML = `<span>${processData[0]['total'].toFixed(2)}</span>`
     document.querySelector('.load').classList.add('hidden')
 }
 
-async function updateTableRow(id, data) {
-    const request = await fetch('/commodity/', {
-        method: 'POST',
-        headers: {
-            'content-type': 'application/json',
-            'X-CSRFToken': csrftoken
-        },
-        body: JSON.stringify(data)
-    });
-    const response = await request.json()
-    let subTotal = countTotal(response)
 
-    document.getElementById(`${id}`).innerHTML = `
-        <td class="brick-height">${response['brick-height']}</td>
-        <td class="brick-length">${response['brick-length']}</td>
-        <td class="wall-height">${response['wall-height']}</td>
-        <td class="wall-length">${response['wall-length']}</td>
-        <td class="sand-amount">${response['sand-amount']}</td>
-        <td class="cement-amount">${response['cement-amount']}</td>
-        <td class="brick-amount">${response['brick-amount']}</td>
-        <td class="water-amount">${response['water-amount']}</td>
-        <td class"sub-total">${subTotal}</td>`
-
-    document.getElementById(`${id}`).classList = ''
-    document.getElementById('utr').innerText = ''
-
-    let total = document.getElementById('total')
-    total.innerHTML = `<span>${parseFloat(total.innerText) + response['total']}</span>`
-    document.querySelector('.load').classList.add('hidden')
-}
-
-function countTotal(response) {
-    let count = 0
-    count += parseFloat(response['brick-height'])
-    count += parseFloat(response['brick-length'])
-    count += parseFloat(response['wall-height'])
-    count += parseFloat(response['wall-length'])
-    count += parseFloat(response['sand-amount'])
-    count += parseFloat(response['cement-amount'])
-    count += parseFloat(response['brick-amount'])
-    count += parseFloat(response['water-amount'])
-
-    return count
-}

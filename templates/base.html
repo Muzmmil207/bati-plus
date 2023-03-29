@@ -46,57 +46,20 @@
     <nav>
         <div class="menu-icon">
             <i id="menu-btn" class="bi bi-list-task"></i>
-            <a href="" class="">
-                البناء والتعمير
-            </a>
-        </div>
-        <div id="nav-item" class="top-nav">
-            <a href="" class="nav-title">
-                البناء والتعمير
-            </a>
-            <div class="nav-contacts">
-                <div class="contact">
-                    <div class="icon">
-                        <i class="bi bi-clock"></i>
-                    </div>
-                    <div class="contact-info">
-                        <h1>ساعات العمل</h1>
-                        <p>
-                            الأحد - السبت, 08:00 - 18:00
-                        </p>
-                    </div>
-                </div>
-                <div class="contact">
-                    <div class="icon">
-                        <i class="bi bi-phone"></i>
-                    </div>
-                    <div class="contact-info">
-                        <h1>إتصل بنا</h1>
-                        <p>
-                            +212669015920
-                        </p>
-                    </div>
-                </div>
-                <div class="contact">
-                    <div class="icon">
-                        <i class="bi bi-envelope"></i>
-                    </div>
-                    <div class="contact-info">
-                        <h1>بريدنا الإلكتروني</h1>
-                        <p>
-                            construction@btpma.com
-                        </p>
-                    </div>
-                </div>
+            <div class="logo">
+                <span>
+                    البناء والتعمير
+                </span>
             </div>
         </div>
+
         <div id="nav-item" class="bottom-nav">
             <div class="nav-links">
                 <a href="/">home</a>
             </div>
-            <div class="whatsapp">
+            <div class="logo">
                 <span>
-                    واتساب
+                    البناء والتعمير
                 </span>
             </div>
         </div>
@@ -115,7 +78,6 @@
                 <h1 class="center-text">حساب الطوب للجدران</h1>
             </div>
             <form class="counter">
-                <div id="utr" style="display: none;"></div>
                 <div class="form-component">
                     <img src="/static/imgs/brique 356.png" alt="image">
                     <h1 class="center-text">مقاسات الطوب</h1>
@@ -185,15 +147,8 @@
                                 </option>
                             </select>
                         </div>
-                    </div><br>
-                    <h1 class="center-text">سعر الطوب</h1>
-                    <div class="form-elements">
-                        <div class="form-element">
-                            <input class="form-control" required id="brick-length" type="number">
-                            <label for="brick-length">:HD</label>
-                        </div>
+                        <p>1.5cm سمك الخليط</p>
                     </div>
-                    <br>
                 </div>
                 <div class="form-component">
                     <img src="/static/imgs/n-brique.png" alt="image">
@@ -213,23 +168,23 @@
                     <h1>ما ستحتاجه لبناء الجدار</h1>
                     <div class="form-element special-form-element">
                         <img src="/static/imgs/sand.png" alt="image">
-                        <input disabled class="form-control" required id="sand-amount" type="number">
-                        <label for="sand-amount">:كمية الرمل</label>
+                        <input disabled class="form-control" value="150DH" id="sand-price" type="text">
+                        <label for="sand-price">:سعر الرمل</label>
                     </div>
                     <div class="form-element special-form-element">
                         <img src="/static/imgs/cimont lafarg.png" alt="image">
-                        <input disabled class="form-control" required id="cement-amount" type="number">
-                        <label for="cement-amount">:كمية الاسمنت</label>
+                        <input disabled class="form-control" value="80HD" id="cement-price" type="text">
+                        <label for="cement-price">:سعر الاسمنت</label>
                     </div>
                     <div class="form-element special-form-element">
                         <img src="/static/imgs/brique 356.png" alt="image">
-                        <input disabled class="form-control" required id="brick-amount" type="number">
-                        <label for="brick-amount">:كمية الطوب</label>
+                        <input disabled class="form-control" value="0.9HD" id="brick-price" type="text">
+                        <label for="brick-price">:سعر الطوب</label>
                     </div>
                     <div class="form-element special-form-element">
-                        <img src="/static/imgs/Blue_Drop_Transparent_PNG_Clipart.png" alt="image">
-                        <input disabled class="form-control" required id="water-amount" type="number">
-                        <label for="water-amount">:كمية الماء</label>
+                        <img style="width: 25px;" src="/static/imgs/Blue_Drop_Transparent_PNG_Clipart.png" alt="image">
+                        <input disabled class="form-control" value="0.02HD" id="water-price" type="text">
+                        <label for="water-price">:سعر الماء</label>
                     </div>
                 </div>
                 <div class="form-btns">
@@ -244,22 +199,22 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th></th>
-                        <th colspan="2" scope="col">الطوب</th>
-                        <th colspan="2" scope="col">الجدار</th>
-                        <th colspan="4" scope="col">ما ستحتاجه لبناء الجدار</th>
-                        <th></th>
+                        <th scope="col"></th>
+                        <th colspan="2" scope="col">الرمل m3</th>
+                        <th colspan="2" scope="col">الإسمنت pcs</th>
+                        <th colspan="2" scope="col">الطوب pcs</th>
+                        <th colspan="2" scope="col">الماء litre</th>
                     </tr>
                     <tr>
-                        <th scope="col">المعرّف</th>
-                        <th scope="col">الارتفاع</th>
-                        <th scope="col">الطول</th>
-                        <th scope="col">الارتفاع</th>
-                        <th scope="col">الطول</th>
-                        <th scope="col">كمية الرمل</th>
-                        <th scope="col">كمية الاسمنت</th>
-                        <th scope="col">كمية الطوب</th>
-                        <th scope="col">كمية الماء</th>
+                        <th scope="col">المعرف</th>
+                        <th scope="col">الثمن HD</th>
+                        <th scope="col">الكمية</th>
+                        <th scope="col">الثمن HD</th>
+                        <th scope="col">الكمية</th>
+                        <th scope="col">الثمن HD</th>
+                        <th scope="col">الكمية</th>
+                        <th scope="col">الثمن HD</th>
+                        <th scope="col">الكمية</th>
                         <th scope="col">المجموع</th>
                     </tr>
                 </thead>
@@ -276,9 +231,108 @@
 
         </div>
     </div>
-    <br>
-    <br><br>
-    <br><br>
+
+    <footer>
+        <div>
+            <div class="contact-us">
+                <h1 class="title">contact us</h1>
+                <div class="contacts">
+                    <p class="bc">
+                        Hi, we are always open for cooperation and suggestions, <br>contact us in one of the ways below:
+                    </p>
+                    <div class="contacts-ways">
+                        <div class="w">
+                            <h2 class="contacts-heading">إتصل بنا</h2>
+                            <p>
+                                +212669015920
+                            </p>
+                        </div>
+                        <div class="w">
+                            <h2 class="contacts-heading">بريدنا الإلكتروني</h2>
+                            <p>
+                                construction@btpma.com
+                            </p>
+                        </div>
+                        <div class="w">
+                            <h2 class="contacts-heading">ساعات العمل</h2>
+                            <p>
+                                الأحد - السبت, 08:00 - 18:00
+                            </p>
+                        </div>
+                        <div class="w">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="information">
+                <h1 class="title">information</h1>
+                <div>
+                    <ul>
+                        <li>
+                            <a class="bc" href="#">about us</a>
+                        </li>
+                        <li>
+                            <a class="bc" href="#">delivery information</a>
+                        </li>
+                        <li>
+                            <a class="bc" href="#">private policy</a>
+                        </li>
+                        <li>
+                            <a class="bc" href="#">brands</a>
+                        </li>
+                        <li>
+                            <a class="bc" href="#">contact us</a>
+                        </li>
+                        <li>
+                            <a class="bc" href="#">returns</a>
+                        </li>
+                        <li>
+                            <a class="bc" href="#">site map</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="my-account">
+                <h1 class="title">my account</h1>
+                <div>
+                    <ul>
+                        <li>
+                            <a class="bc" href="#">about us</a>
+                        </li>
+                        <li>
+                            <a class="bc" href="#">delivery information</a>
+                        </li>
+                        <li>
+                            <a class="bc" href="#">private policy</a>
+                        </li>
+                        <li>
+                            <a class="bc" href="#">brands</a>
+                        </li>
+                        <li>
+                            <a class="bc" href="#">contact us</a>
+                        </li>
+                        <li>
+                            <a class="bc" href="#">returns</a>
+                        </li>
+                        <li>
+                            <a class="bc" href="#">site map</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="left">
+                <p class="bc">Powered by <span>Muzmmil207</span> - designed by
+                    <a href="#">BATI PLUS team</a>
+                </p>
+            </div>
+            <div class="right">
+
+            </div>
+        </div>
+    </footer>
     <script>
         const navItems = document.querySelectorAll('#nav-item');
         const menuBtn = document.getElementById('menu-btn');
