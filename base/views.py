@@ -1,6 +1,7 @@
 import csv
 import json
 import time
+from datetime import date
 
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
@@ -39,38 +40,37 @@ def commodity(request):
         brick = data["brick-length"] * data["brick-height"]
         wall = data["wall-length"] * data["wall-height"]
         response = {}
-        response["sand-price"] = (
+        response["sand-price"] = round((
             (data["brick-length"] + data["brick-height"])
             * (data["brick-width"] * data["batter-thickness"])
             * data["sand-price"]
-        )
-        response["sand-amount"] = (data["brick-length"] + data["brick-height"]) * (
+        ),2)
+        response["sand-amount"] = round((data["brick-length"] + data["brick-height"]) * (
             data["brick-width"] * data["batter-thickness"]
-        )
-        response["cement-price"] = (response["sand-price"]) * (250 / 50) * data["cement-price"]
-        response["cement-amount"] = (
+        ),2)
+        response["cement-price"] = round((response["sand-price"]) * (250 / 50) * data["cement-price"],2)
+        response["cement-amount"] = round((
             (response["sand-price"]) * (250 / 50) * data["cement-price"] / (data["cement-price"])
-        )
-        response["brick-price"] = (wall / brick) * data["brick-price"]
-        response["brick-amount"] = wall / brick
-        response["water-price"] = response["sand-price"] * data["water-price"] * 1000
-        response["water-amount"] = response["sand-price"] * 1000
-        total = sum(
+        ),2)
+        response["brick-price"] = round((wall / brick) * data["brick-price"], 2)
+        response["brick-amount"] = round(wall / brick,2)
+        response["water-price"] = round(response["sand-price"] * data["water-price"] * 1000, 2)
+        response["water-amount"] = round(response["sand-price"] * 1000, 2)
+        response["total"] = round(sum(
             [
                 response["sand-price"],
                 response["cement-price"],
                 response["brick-price"],
                 response["water-price"],
             ]
-        )
-        response["total"] = float("{:.2f}".format(total))
+        ), 3)
         response["id"] = data.get("id")
         time.sleep(0.5)
         return JsonResponse(response, safe=False)
     return JsonResponse({}, safe=False)
 
 
-@require_http_methods(["POST"])
+# @require_http_methods(["POST"])
 def create_csv(request):
     # Create the HttpResponse object with the appropriate CSV header.
     response = HttpResponse(
@@ -78,9 +78,12 @@ def create_csv(request):
         headers={"Content-Disposition": 'attachment; filename="somefilename.csv"'},
     )
     data = json.loads(request.body)
-
+    column_names = data[1].keys()
+    
     writer = csv.writer(response)
-    writer.writerow(["First row", "Foo", "Bar", "Baz"])
-    writer.writerow(["Second row", "A", "B", "C", '"Testing"', "Here's a quote"])
+    writer.writerow([i.replace('-', ' ').capitalize() for i in column_names])
+    for i in data[1:]:
+        writer.writerow(i.values())
+    writer.writerow(['','','','','','','','',list(data[0].values())[0],'المجموع الكلي'])
 
     return response

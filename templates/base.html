@@ -22,22 +22,7 @@
     <title>{% block title %}BATI PULS{% endblock %}</title>
 
     <script type="text/javascript">
-        function getCookie(name) {
-            let cookieValue = null;
-            if (document.cookie && document.cookie !== '') {
-                const cookies = document.cookie.split(';');
-                for (let i = 0; i < cookies.length; i++) {
-                    const cookie = cookies[i].trim();
-                    // Does this cookie string begin with the name we want?
-                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                        break;
-                    }
-                }
-            }
-            return cookieValue;
-        }
-        const csrftoken = getCookie('csrftoken');
+        const csrftoken = '{{csrf_token}}'
     </script>
 
 </head>
@@ -168,26 +153,26 @@
                     <h1>ما ستحتاجه لبناء الجدار</h1>
                     <div class="form-element special-form-element">
                         <img src="/static/imgs/sand.png" alt="image">
-                        <input disabled class="form-control" value="{{sand.commodity_price}}DH" id="sand-price"
-                            type="text">
+                        <input class="form-control" value="{{sand.commodity_price}}" id="sand-price" step="0.01"
+                            type="number">
                         <label for="sand-price">:سعر الرمل</label>
                     </div>
                     <div class="form-element special-form-element">
                         <img src="/static/imgs/cimont lafarg.png" alt="image">
-                        <input disabled class="form-control" value="{{cement.commodity_price}}HD" id="cement-price"
-                            type="text">
+                        <input class="form-control" value="{{cement.commodity_price}}" id="cement-price" step="0.01"
+                            type="number">
                         <label for="cement-price">:سعر الاسمنت</label>
                     </div>
                     <div class="form-element special-form-element">
                         <img src="/static/imgs/brique 356.png" alt="image">
-                        <input disabled class="form-control" value="{{brick.commodity_price}}HD" id="brick-price"
-                            type="text">
+                        <input class="form-control" value="{{brick.commodity_price}}" id="brick-price" step="0.01"
+                            type="number">
                         <label for="brick-price">:سعر الطوب</label>
                     </div>
                     <div class="form-element special-form-element">
                         <img style="width: 25px;" src="/static/imgs/Blue_Drop_Transparent_PNG_Clipart.png" alt="image">
-                        <input disabled class="form-control" value="{{water.commodity_price}}HD" id="water-price"
-                            type="text">
+                        <input class="form-control" value="{{water.commodity_price}}" id="water-price" step="0.01"
+                            type="number">
                         <label for="water-price">:سعر الماء</label>
                     </div>
                 </div>
@@ -232,6 +217,13 @@
                 </tfoot>
             </table>
             <!-- End Bordered Table -->
+            <div class="export">
+                <!-- <form action="/create-csv/" method="post">
+                    {% csrf_token %}
+                    <textarea name="" id="" cols="30" rows="10"></textarea>
+                </form> -->
+                <button id="export" class="btn btn-warning btn-sm">إستخراج</button>
+            </div>
 
         </div>
     </div>

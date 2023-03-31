@@ -2,10 +2,34 @@ let deleteBtn = document.getElementById('delete')
 let form = document.querySelector('.counter')
 let formInputs = document.querySelectorAll('input')
 let tbody = document.getElementById('tbody')
-
 let bricksData = document.querySelector('select')
+let exportBtn = document.getElementById('export')
 
 let commodityData = {}
+exportBtn.onclick = () => {
+    let processData = JSON.parse(localStorage.getItem('process-data'))
+    fetch('/create-csv/', {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json',
+            'X-CSRFToken': csrftoken
+        },
+        body: JSON.stringify(processData)
+    })
+        .then(response => response.blob())
+        .then(blob => {
+            const url = window.URL.createObjectURL(new Blob([blob]));
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', 'filename.csv');
+            document.body.appendChild(link);
+            link.click();
+            link.parentNode.removeChild(link);
+        });
+    // console.log(response)
+    // localStorage.removeItem('process-data')
+    tbody.innerHTML = ''
+}
 
 const brickTypes = [
     [0.50, 0.20, 0.20],

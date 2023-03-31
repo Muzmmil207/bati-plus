@@ -5,5 +5,5 @@ from .views import commodity, create_csv, home
 urlpatterns = [
     path('', home),
     path('commodity/', commodity),
-    path('create-csv/', create_csv),
+    path('create-csv/', create_csv, name="create-csv"),
 ]
