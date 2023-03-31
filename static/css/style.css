@@ -620,7 +620,7 @@ footer .right div {
     }
 }
 
-@media screen and (max-width:400px) {
+@media screen and (max-width:440px) {
     nav {
         padding: 10px 0 0;
     }
@@ -640,14 +640,14 @@ footer .right div {
     }
 
     .form-element input {
-        width: 150px;
+        width: 180px;
     }
 
     .form-element select {
-        width: 150px;
+        width: 180px;
     }
 
     .form-element label {
-        width: 57px;
+        width: 50px;
     }
 }

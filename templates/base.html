@@ -153,26 +153,22 @@
                     <h1>ما ستحتاجه لبناء الجدار</h1>
                     <div class="form-element special-form-element">
                         <img src="/static/imgs/sand.png" alt="image">
-                        <input class="form-control" value="{{sand.commodity_price}}" id="sand-price" step="0.01"
-                            type="number">
+                        <input class="form-control" value="150" id="sand-price" step="0.01" type="number">
                         <label for="sand-price">:سعر الرمل</label>
                     </div>
                     <div class="form-element special-form-element">
                         <img src="/static/imgs/cimont lafarg.png" alt="image">
-                        <input class="form-control" value="{{cement.commodity_price}}" id="cement-price" step="0.01"
-                            type="number">
+                        <input class="form-control" value="80" id="cement-price" step="0.01" type="number">
                         <label for="cement-price">:سعر الاسمنت</label>
                     </div>
                     <div class="form-element special-form-element">
                         <img src="/static/imgs/brique 356.png" alt="image">
-                        <input class="form-control" value="{{brick.commodity_price}}" id="brick-price" step="0.01"
-                            type="number">
+                        <input class="form-control" value="0.9" id="brick-price" step="0.01" type="number">
                         <label for="brick-price">:سعر الطوب</label>
                     </div>
                     <div class="form-element special-form-element">
                         <img style="width: 25px;" src="/static/imgs/Blue_Drop_Transparent_PNG_Clipart.png" alt="image">
-                        <input class="form-control" value="{{water.commodity_price}}" id="water-price" step="0.01"
-                            type="number">
+                        <input class="form-control" value="0.02" id="water-price" step="0.01" type="number">
                         <label for="water-price">:سعر الماء</label>
                     </div>
                 </div>
@@ -217,12 +213,10 @@
                 </tfoot>
             </table>
             <!-- End Bordered Table -->
-            <div class="export">
-                <!-- <form action="/create-csv/" method="post">
-                    {% csrf_token %}
-                    <textarea name="" id="" cols="30" rows="10"></textarea>
-                </form> -->
-                <button id="export" class="btn btn-warning btn-sm">إستخراج</button>
+            <div id="export">
+                <form action="/create-csv/" method="get">
+                    <button id="" class="btn btn-warning btn-sm">إستخراج</button>
+                </form>
             </div>
 
         </div>

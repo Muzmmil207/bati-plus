@@ -1,4 +1,3 @@
-
 import os
 from pathlib import Path
 
@@ -19,7 +18,7 @@ SECRET_KEY = "django-insecure-w2nn)@diga8iqp=_de@sl3vs!2#5zmozg+_v^pxu5)g*io%h69
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -32,8 +31,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     # My apps
-    'base',
-    'users',
+    "base",
+    "users",
     # Third part apps
 ]
 
@@ -114,10 +113,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = "static/"
-#STATICFILES_DIRS = [BASE_DIR / "static"]
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# STATICFILES_DIRS = [BASE_DIR / "static"]
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-
