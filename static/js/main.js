@@ -102,6 +102,7 @@ form.onsubmit = (e) => {
     commodityData['brick-price'] = parseFloat(brick.value)
     commodityData['water-price'] = parseFloat(water.value)
     commodityData['batter-thickness'] = 0.015
+    // commodityData['batter'] = ((commodityData['wall-length'] + commodityData['wall-height']) * commodityData['brick-width'] * commodityData['batter-thickness']) / 1.1
     sendData(commodityData)
 
     form.reset()
