@@ -34,17 +34,20 @@ def commodity(request):
             (response["sand-amount"] * data["sand-price"]),
             2,
         )
-        response["cement-amount"] = round((response["sand-amount"] / 4.46) / 0.035)
+        response["cement-amount"] = round((response["sand-amount"] / 4.46) / 0.035, 2)
         response["cement-price"] = round(response["cement-amount"] * data["cement-price"], 2)
         response["water-amount"] = round(response["sand-amount"] * 200)
         response["water-price"] = round(response["water-amount"] * data["water-price"], 2)
-        response["total"] = sum(
-            [
-                response["sand-price"],
-                response["cement-price"],
-                response["brick-price"],
-                response["water-price"],
-            ]
+        response["total"] = round(
+            sum(
+                [
+                    response["sand-price"],
+                    response["cement-price"],
+                    response["brick-price"],
+                    response["water-price"],
+                ]
+            ),
+            2,
         )
         response["sand-amount"] = round(response["sand-amount"], 4)
         response["id"] = data.get("id")
@@ -63,18 +66,18 @@ def create_csv(request):
     # Create the HttpResponse object with the appropriate CSV header.
     response = HttpResponse(
         content_type="text/csv",
-        headers={"Content-Disposition": 'attachment; filename="commodity-data.csv"'},
+        headers={"Content-Disposition": 'attachment; filename="Calcul-brique-(www.btpma.com).csv"'},
     )
     data = request.session.get("commodity-data")
     if data:
         # column_names = data[1].keys()
         column_names = [
-            "Pcs",
-            "Brique prix",
-            "sable",
-            "Prix sable",
+            "Brique Pcs",
+            "Brique Prix",
+            "Sable",
+            "Prix Sable",
             "Pcs Ciment",
-            "prix ciment",
+            "Prix Ciment",
             "L ,l'eau",
             "Prix ,l'eau",
             "Total DH",
